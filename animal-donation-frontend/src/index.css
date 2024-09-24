@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif; /* Fonte mais comum */
+  background-color: #e9ecef; /* Fundo geral mais suave */
+  color: #333; /* Texto padrão mais escuro */
+}
+
+code {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #f7f7f7; /* Fundo para código */
+  padding: 2px 4px;
+  border-radius: 4px;
+}
