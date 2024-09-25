@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const AnimalManagement = () => {
     const [animals, setAnimals] = useState([]);
-    const [newAnimal, setNewAnimal] = useState({ name: '', age: '', breed: '', description: '' });
+    const [newAnimal, setNewAnimal] = useState({ nome: '', idade: '', raca: '', descricao: '' });
     const [editAnimal, setEditAnimal] = useState(null);
 
     // Read - Fetch all animals
@@ -26,7 +26,7 @@ const AnimalManagement = () => {
         axios.post('http://localhost:3000/animais', newAnimal)
             .then(() => {
                 fetchAnimals(); // Refresh list
-                setNewAnimal({ name: '', age: '', breed: '', description: '' });
+                setNewAnimal({ nome: '', idade: '', raca: '', descricao: '' });
             })
             .catch(error => {
                 console.error('Erro ao adicionar animal:', error);
@@ -66,26 +66,26 @@ const AnimalManagement = () => {
                 <input
                     type="text"
                     placeholder="Nome"
-                    value={newAnimal.name}
-                    onChange={(e) => setNewAnimal({ ...newAnimal, name: e.target.value })}
+                    value={newAnimal.nome}
+                    onChange={(e) => setNewAnimal({ ...newAnimal, nome: e.target.value })}
                 />
                 <input
                     type="number"
                     placeholder="Idade"
-                    value={newAnimal.age}
-                    onChange={(e) => setNewAnimal({ ...newAnimal, age: e.target.value })}
+                    value={newAnimal.idade}
+                    onChange={(e) => setNewAnimal({ ...newAnimal, idade: e.target.value })}
                 />
                 <input
                     type="text"
                     placeholder="Raça"
-                    value={newAnimal.breed}
-                    onChange={(e) => setNewAnimal({ ...newAnimal, breed: e.target.value })}
+                    value={newAnimal.raca}
+                    onChange={(e) => setNewAnimal({ ...newAnimal, raca: e.target.value })}
                 />
                 <input
                     type="text"
                     placeholder="Descrição"
-                    value={newAnimal.description}
-                    onChange={(e) => setNewAnimal({ ...newAnimal, description: e.target.value })}
+                    value={newAnimal.descricao}
+                    onChange={(e) => setNewAnimal({ ...newAnimal, descricao: e.target.value })}
                 />
                 <button onClick={addAnimal}>Adicionar</button>
             </div>
@@ -98,30 +98,30 @@ const AnimalManagement = () => {
                             <div>
                                 <input
                                     type="text"
-                                    value={editAnimal.name}
-                                    onChange={(e) => setEditAnimal({ ...editAnimal, name: e.target.value })}
+                                    value={editAnimal.nome}
+                                    onChange={(e) => setEditAnimal({ ...editAnimal, nome: e.target.value })}
                                 />
                                 <input
                                     type="number"
-                                    value={editAnimal.age}
-                                    onChange={(e) => setEditAnimal({ ...editAnimal, age: e.target.value })}
+                                    value={editAnimal.idade}
+                                    onChange={(e) => setEditAnimal({ ...editAnimal, idade: e.target.value })}
                                 />
                                 <input
                                     type="text"
-                                    value={editAnimal.breed}
-                                    onChange={(e) => setEditAnimal({ ...editAnimal, breed: e.target.value })}
+                                    value={editAnimal.raca}
+                                    onChange={(e) => setEditAnimal({ ...editAnimal, raca: e.target.value })}
                                 />
                                 <input
                                     type="text"
-                                    value={editAnimal.description}
-                                    onChange={(e) => setEditAnimal({ ...editAnimal, description: e.target.value })}
+                                    value={editAnimal.descricao}
+                                    onChange={(e) => setEditAnimal({ ...editAnimal, descricao: e.target.value })}
                                 />
                                 <button onClick={updateAnimal}>Salvar</button>
                                 <button onClick={() => setEditAnimal(null)}>Cancelar</button>
                             </div>
                         ) : (
                             <div>
-                                {animal.name} - {animal.age} anos - {animal.breed} - {animal.description}
+                                {animal.nome} - {animal.idade} anos - {animal.raca} - {animal.descricao}
                                 <button onClick={() => setEditAnimal(animal)}>Editar</button>
                                 <button onClick={() => deleteAnimal(animal.id)}>Excluir</button>
                             </div>
@@ -134,4 +134,3 @@ const AnimalManagement = () => {
 };
 
 export default AnimalManagement;
-

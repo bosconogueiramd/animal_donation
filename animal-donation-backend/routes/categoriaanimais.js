@@ -1,6 +1,7 @@
+// routes/categoriaanimais.js
 const express = require('express');
 const router = express.Router();
-const { getAllCategories, createCategory, updateCategory, deleteCategory } = require('../controllers/categoriaanimais');
+const { getAllCategories, createCategory, updateCategory, deleteCategory } = require('../controllers/categoriaanimais'); // Verifique se os nomes das funções estão corretos
 
 // Route to get all categories
 router.get('/', getAllCategories);

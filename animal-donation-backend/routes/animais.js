@@ -1,6 +1,7 @@
+// routes/animais.js
 const express = require('express');
 const router = express.Router();
-const { getAllAnimals, createAnimal, updateAnimal, deleteAnimal } = require('../controllers/animais');
+const { getAllAnimals, createAnimal, updateAnimal, deleteAnimal } = require('../controllers/animais'); // Importar corretamente as funções
 
 // Route to get all animals
 router.get('/', getAllAnimals);

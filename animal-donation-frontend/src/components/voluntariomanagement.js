@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const VoluntarioManagement = () => {
     const [voluntarios, setVoluntarios] = useState([]);
-    const [newVoluntario, setNewVoluntario] = useState({ name: '', email: '', phone: '', skills: '' });
+    const [newVoluntario, setNewVoluntario] = useState({ nome: '', email: '', telefone: '', data_registro: '' });
     const [editVoluntario, setEditVoluntario] = useState(null);
 
     // Read - Fetch all voluntarios
@@ -26,7 +26,7 @@ const VoluntarioManagement = () => {
         axios.post('http://localhost:3000/voluntarios', newVoluntario)
             .then(() => {
                 fetchVoluntarios(); // Refresh list
-                setNewVoluntario({ name: '', email: '', phone: '', skills: '' });
+                setNewVoluntario({ nome: '', email: '', telefone: '', data_registro: '' });
             })
             .catch(error => {
                 console.error('Erro ao adicionar voluntário:', error);
@@ -66,8 +66,8 @@ const VoluntarioManagement = () => {
                 <input
                     type="text"
                     placeholder="Nome"
-                    value={newVoluntario.name}
-                    onChange={(e) => setNewVoluntario({ ...newVoluntario, name: e.target.value })}
+                    value={newVoluntario.nome}
+                    onChange={(e) => setNewVoluntario({ ...newVoluntario, nome: e.target.value })}
                 />
                 <input
                     type="email"
@@ -78,14 +78,14 @@ const VoluntarioManagement = () => {
                 <input
                     type="text"
                     placeholder="Telefone"
-                    value={newVoluntario.phone}
-                    onChange={(e) => setNewVoluntario({ ...newVoluntario, phone: e.target.value })}
+                    value={newVoluntario.telefone}
+                    onChange={(e) => setNewVoluntario({ ...newVoluntario, telefone: e.target.value })}
                 />
                 <input
-                    type="text"
-                    placeholder="Habilidades"
-                    value={newVoluntario.skills}
-                    onChange={(e) => setNewVoluntario({ ...newVoluntario, skills: e.target.value })}
+                    type="datetime-local"
+                    placeholder="Data de Registro"
+                    value={newVoluntario.data_registro}
+                    onChange={(e) => setNewVoluntario({ ...newVoluntario, data_registro: e.target.value })}
                 />
                 <button onClick={addVoluntario}>Adicionar</button>
             </div>
@@ -98,8 +98,8 @@ const VoluntarioManagement = () => {
                             <div>
                                 <input
                                     type="text"
-                                    value={editVoluntario.name}
-                                    onChange={(e) => setEditVoluntario({ ...editVoluntario, name: e.target.value })}
+                                    value={editVoluntario.nome}
+                                    onChange={(e) => setEditVoluntario({ ...editVoluntario, nome: e.target.value })}
                                 />
                                 <input
                                     type="email"
@@ -108,20 +108,20 @@ const VoluntarioManagement = () => {
                                 />
                                 <input
                                     type="text"
-                                    value={editVoluntario.phone}
-                                    onChange={(e) => setEditVoluntario({ ...editVoluntario, phone: e.target.value })}
+                                    value={editVoluntario.telefone}
+                                    onChange={(e) => setEditVoluntario({ ...editVoluntario, telefone: e.target.value })}
                                 />
                                 <input
-                                    type="text"
-                                    value={editVoluntario.skills}
-                                    onChange={(e) => setEditVoluntario({ ...editVoluntario, skills: e.target.value })}
+                                    type="datetime-local"
+                                    value={editVoluntario.data_registro}
+                                    onChange={(e) => setEditVoluntario({ ...editVoluntario, data_registro: e.target.value })}
                                 />
                                 <button onClick={updateVoluntario}>Salvar</button>
                                 <button onClick={() => setEditVoluntario(null)}>Cancelar</button>
                             </div>
                         ) : (
                             <div>
-                                {voluntario.name} - {voluntario.email} - {voluntario.phone} - {voluntario.skills}
+                                {voluntario.nome} - {voluntario.email} - {voluntario.telefone} - {voluntario.data_registro}
                                 <button onClick={() => setEditVoluntario(voluntario)}>Editar</button>
                                 <button onClick={() => deleteVoluntario(voluntario.id)}>Excluir</button>
                             </div>

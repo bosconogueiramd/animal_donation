@@ -1,3 +1,4 @@
+// controllers/pedidocontroller.js
 const db = require('../db');
 
 // Get all requests (Read)
@@ -13,31 +14,35 @@ const getAllRequests = (req, res) => {
 
 // Create a new request (Create)
 const createRequest = (req, res) => {
-    const { animal_id, user_id, status, message } = req.body;
-    db.query('INSERT INTO pedidos (animal_id, user_id, status, message) VALUES (?, ?, ?, ?)', 
-             [animal_id, user_id, status, message], 
-             (error, results) => {
-                 if (error) {
-                     res.status(500).json({ error });
-                 } else {
-                     res.status(201).json({ message: 'Request created', id: results.insertId });
-                 }
-             });
+    const { usuario_id, animal_id, status, data_pedido } = req.body;
+    db.query(
+        'INSERT INTO pedidos (usuario_id, animal_id, status, data_pedido) VALUES (?, ?, ?, ?)', 
+        [usuario_id, animal_id, status, data_pedido], 
+        (error, results) => {
+            if (error) {
+                res.status(500).json({ error });
+            } else {
+                res.status(201).json({ message: 'Pedido criado', id: results.insertId });
+            }
+        }
+    );
 };
 
 // Update a request (Update)
 const updateRequest = (req, res) => {
     const { id } = req.params;
-    const { status, message } = req.body;
-    db.query('UPDATE pedidos SET status = ?, message = ? WHERE id = ?', 
-             [status, message, id], 
-             (error) => {
-                 if (error) {
-                     res.status(500).json({ error });
-                 } else {
-                     res.status(200).json({ message: 'Request updated' });
-                 }
-             });
+    const { status, data_pedido } = req.body;
+    db.query(
+        'UPDATE pedidos SET status = ?, data_pedido = ? WHERE id = ?', 
+        [status, data_pedido, id], 
+        (error) => {
+            if (error) {
+                res.status(500).json({ error });
+            } else {
+                res.status(200).json({ message: 'Pedido atualizado' });
+            }
+        }
+    );
 };
 
 // Delete a request (Delete)
@@ -47,7 +52,7 @@ const deleteRequest = (req, res) => {
         if (error) {
             res.status(500).json({ error });
         } else {
-            res.status(200).json({ message: 'Request deleted' });
+            res.status(200).json({ message: 'Pedido excluído' });
         }
     });
 };

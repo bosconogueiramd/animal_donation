@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const PedidoManagement = () => {
     const [pedidos, setPedidos] = useState([]);
-    const [newPedido, setNewPedido] = useState({ animal_id: '', user_id: '', status: '', message: '' });
+    const [newPedido, setNewPedido] = useState({ usuario_id: '', animal_id: '', status: '', data_pedido: '' });
     const [editPedido, setEditPedido] = useState(null);
 
     // Read - Fetch all pedidos
@@ -26,7 +26,7 @@ const PedidoManagement = () => {
         axios.post('http://localhost:3000/pedidos', newPedido)
             .then(() => {
                 fetchPedidos(); // Refresh list
-                setNewPedido({ animal_id: '', user_id: '', status: '', message: '' });
+                setNewPedido({ usuario_id: '', animal_id: '', status: '', data_pedido: '' });
             })
             .catch(error => {
                 console.error('Erro ao adicionar pedido:', error);
@@ -65,15 +65,15 @@ const PedidoManagement = () => {
                 <h2>Adicionar Novo Pedido</h2>
                 <input
                     type="text"
-                    placeholder="ID do Animal"
-                    value={newPedido.animal_id}
-                    onChange={(e) => setNewPedido({ ...newPedido, animal_id: e.target.value })}
+                    placeholder="ID do Usuário"
+                    value={newPedido.usuario_id}
+                    onChange={(e) => setNewPedido({ ...newPedido, usuario_id: e.target.value })}
                 />
                 <input
                     type="text"
-                    placeholder="ID do Usuário"
-                    value={newPedido.user_id}
-                    onChange={(e) => setNewPedido({ ...newPedido, user_id: e.target.value })}
+                    placeholder="ID do Animal"
+                    value={newPedido.animal_id}
+                    onChange={(e) => setNewPedido({ ...newPedido, animal_id: e.target.value })}
                 />
                 <input
                     type="text"
@@ -82,10 +82,10 @@ const PedidoManagement = () => {
                     onChange={(e) => setNewPedido({ ...newPedido, status: e.target.value })}
                 />
                 <input
-                    type="text"
-                    placeholder="Mensagem"
-                    value={newPedido.message}
-                    onChange={(e) => setNewPedido({ ...newPedido, message: e.target.value })}
+                    type="datetime-local"
+                    placeholder="Data do Pedido"
+                    value={newPedido.data_pedido}
+                    onChange={(e) => setNewPedido({ ...newPedido, data_pedido: e.target.value })}
                 />
                 <button onClick={addPedido}>Adicionar</button>
             </div>
@@ -98,13 +98,13 @@ const PedidoManagement = () => {
                             <div>
                                 <input
                                     type="text"
-                                    value={editPedido.animal_id}
-                                    onChange={(e) => setEditPedido({ ...editPedido, animal_id: e.target.value })}
+                                    value={editPedido.usuario_id}
+                                    onChange={(e) => setEditPedido({ ...editPedido, usuario_id: e.target.value })}
                                 />
                                 <input
                                     type="text"
-                                    value={editPedido.user_id}
-                                    onChange={(e) => setEditPedido({ ...editPedido, user_id: e.target.value })}
+                                    value={editPedido.animal_id}
+                                    onChange={(e) => setEditPedido({ ...editPedido, animal_id: e.target.value })}
                                 />
                                 <input
                                     type="text"
@@ -112,16 +112,16 @@ const PedidoManagement = () => {
                                     onChange={(e) => setEditPedido({ ...editPedido, status: e.target.value })}
                                 />
                                 <input
-                                    type="text"
-                                    value={editPedido.message}
-                                    onChange={(e) => setEditPedido({ ...editPedido, message: e.target.value })}
+                                    type="datetime-local"
+                                    value={editPedido.data_pedido}
+                                    onChange={(e) => setEditPedido({ ...editPedido, data_pedido: e.target.value })}
                                 />
                                 <button onClick={updatePedido}>Salvar</button>
                                 <button onClick={() => setEditPedido(null)}>Cancelar</button>
                             </div>
                         ) : (
                             <div>
-                                {pedido.animal_id} - {pedido.user_id} - {pedido.status} - {pedido.message}
+                                Usuário: {pedido.usuario_id} - Animal: {pedido.animal_id} - Status: {pedido.status} - Data: {pedido.data_pedido}
                                 <button onClick={() => setEditPedido(pedido)}>Editar</button>
                                 <button onClick={() => deletePedido(pedido.id)}>Excluir</button>
                             </div>

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const CategoriaManagement = () => {
     const [categories, setCategories] = useState([]);
-    const [newCategory, setNewCategory] = useState({ name: '', description: '' });
+    const [newCategory, setNewCategory] = useState({ nome: '' });
     const [editCategory, setEditCategory] = useState(null);
 
     // Read - Fetch all categories
@@ -12,7 +12,7 @@ const CategoriaManagement = () => {
     }, []);
 
     const fetchCategories = () => {
-        axios.get('http://localhost:3000/categorias')
+        axios.get('http://localhost:3000/categoriaanimais')
             .then(response => {
                 setCategories(response.data);
             })
@@ -23,10 +23,10 @@ const CategoriaManagement = () => {
 
     // Create - Add a new category
     const addCategory = () => {
-        axios.post('http://localhost:3000/categorias', newCategory)
+        axios.post('http://localhost:3000/categoriaanimais', newCategory)
             .then(() => {
                 fetchCategories(); // Refresh list
-                setNewCategory({ name: '', description: '' });
+                setNewCategory({ nome: '' });
             })
             .catch(error => {
                 console.error('Erro ao adicionar categoria:', error);
@@ -35,7 +35,7 @@ const CategoriaManagement = () => {
 
     // Update - Edit an existing category
     const updateCategory = () => {
-        axios.put(`http://localhost:3000/categorias/${editCategory.id}`, editCategory)
+        axios.put(`http://localhost:3000/categoriaanimais/${editCategory.id}`, editCategory)
             .then(() => {
                 fetchCategories(); // Refresh list
                 setEditCategory(null);
@@ -47,7 +47,7 @@ const CategoriaManagement = () => {
 
     // Delete - Remove a category
     const deleteCategory = (id) => {
-        axios.delete(`http://localhost:3000/categorias/${id}`)
+        axios.delete(`http://localhost:3000/categoriaanimais/${id}`)
             .then(() => {
                 fetchCategories(); // Refresh list
             })
@@ -65,15 +65,9 @@ const CategoriaManagement = () => {
                 <h2>Adicionar Nova Categoria</h2>
                 <input
                     type="text"
-                    placeholder="Nome"
-                    value={newCategory.name}
-                    onChange={(e) => setNewCategory({ ...newCategory, name: e.target.value })}
-                />
-                <input
-                    type="text"
-                    placeholder="Descrição"
-                    value={newCategory.description}
-                    onChange={(e) => setNewCategory({ ...newCategory, description: e.target.value })}
+                    placeholder="Nome da Categoria"
+                    value={newCategory.nome}
+                    onChange={(e) => setNewCategory({ ...newCategory, nome: e.target.value })}
                 />
                 <button onClick={addCategory}>Adicionar</button>
             </div>
@@ -86,20 +80,15 @@ const CategoriaManagement = () => {
                             <div>
                                 <input
                                     type="text"
-                                    value={editCategory.name}
-                                    onChange={(e) => setEditCategory({ ...editCategory, name: e.target.value })}
-                                />
-                                <input
-                                    type="text"
-                                    value={editCategory.description}
-                                    onChange={(e) => setEditCategory({ ...editCategory, description: e.target.value })}
+                                    value={editCategory.nome}
+                                    onChange={(e) => setEditCategory({ ...editCategory, nome: e.target.value })}
                                 />
                                 <button onClick={updateCategory}>Salvar</button>
                                 <button onClick={() => setEditCategory(null)}>Cancelar</button>
                             </div>
                         ) : (
                             <div>
-                                {category.name} - {category.description}
+                                {category.nome}
                                 <button onClick={() => setEditCategory(category)}>Editar</button>
                                 <button onClick={() => deleteCategory(category.id)}>Excluir</button>
                             </div>
