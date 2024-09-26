@@ -2,9 +2,9 @@ const mysql = require('mysql2');
 
 // Configura a conexão com o banco de dados
 const connection = mysql.createConnection({
-    host: '127.0.0.1',      // Endereço do host
+    host: 'animaldonation.cl8qqac08u13.us-east-1.rds.amazonaws.com',      // Endereço do host
     port: 3306,             // Porta do MySQL
-    user: 'bosconogueira',  // Nome de usuário do banco de dados
+    user: 'bosconogueiramd',  // Nome de usuário do banco de dados
     password: 'bosconogueira*1', // Senha do banco de dados
     database: 'animaldonation'    // Nome do banco de dados (schema)
 });
