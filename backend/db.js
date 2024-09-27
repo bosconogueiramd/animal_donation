@@ -1,12 +1,12 @@
 const mysql = require('mysql2');
 
-// Configura a conexão com o banco de dados
+// Configura a conexão com o banco de dados usando variáveis de ambiente
 const connection = mysql.createConnection({
-    host: 'animaldonation.cl8qqac08u13.us-east-1.rds.amazonaws.com',      // Endereço do host
-    port: 3306,             // Porta do MySQL
-    user: 'bosconogueira',  // Nome de usuário do banco de dados
-    password: 'bosconogueira*1', // Senha do banco de dados
-    database: 'animaldonation'    // Nome do banco de dados (schema)
+    host: process.env.DB_HOST || 'animaldonation.cl8qqac08u13.us-east-1.rds.amazonaws.com',
+    port: process.env.DB_PORT || 3306,
+    user: process.env.DB_USER || 'bosconogueira',
+    password: process.env.DB_PASSWORD || 'bosconogueira*1',
+    database: process.env.DB_NAME || 'animaldonation'
 });
 
 // Conecta ao banco de dados
