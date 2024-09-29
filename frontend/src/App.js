@@ -2,7 +2,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/home';
-import Login from './pages/login';
 import Dashboard from './pages/dashboard';
 import AnimalManagement from './components/animalmanagement';
 import PedidoManagement from './components/pedidomanagement';
@@ -15,8 +14,7 @@ const App = () => {
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} /> {/* Adicionado para corrigir o problema */}
-        <Route path="/login" element={<Login />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/animal-management" element={<AnimalManagement />} />
         <Route path="/pedido-management" element={<PedidoManagement />} />

@@ -10,7 +10,6 @@ const Navbar = () => {
             <div>
                 <Link to="/home" style={{ color: 'white', margin: '0 10px', textDecoration: 'none' }}>Home</Link>
                 <Link to="/dashboard" style={{ color: 'white', margin: '0 10px', textDecoration: 'none' }}>Dashboard</Link>
-                <Link to="/login" style={{ color: 'white', margin: '0 10px', textDecoration: 'none' }}>Login</Link>
             </div>
         </nav>
     );
