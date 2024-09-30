@@ -2,16 +2,16 @@
 FROM node:16
 
 # Define o diretório de trabalho dentro do contêiner
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Copia o arquivo package.json e package-lock.json para o diretório de trabalho
-COPY package*.json ./
+COPY backend/package*.json ./
 
 # Instala as dependências do projeto
 RUN npm install
 
 # Copia o restante do código do projeto para o diretório de trabalho
-COPY . .
+COPY backend ./
 
 # Exponha a porta que a aplicação usará
 EXPOSE 3000
